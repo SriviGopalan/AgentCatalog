@@ -1,0 +1,244 @@
+.crp-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 18, 50, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 300;
+}
+
+.crp-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(92vw, 560px);
+  height: 100vh;
+  background: #fff;
+  box-shadow: -8px 0 40px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  z-index: 301;
+  animation: crp-slide-in 0.25s ease;
+}
+
+@keyframes crp-slide-in {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);   opacity: 1; }
+}
+
+/* ── Header ── */
+.crp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  flex-shrink: 0;
+}
+
+.crp-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.crp-header-icon-wrap {
+  font-size: 26px;
+  filter: drop-shadow(0 0 8px rgba(255,200,0,0.5));
+}
+
+.crp-header-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.crp-header-sub {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 2px;
+}
+
+.crp-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crp-count-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.crp-close {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.crp-close:hover { background: rgba(255,255,255,0.25); }
+
+/* ── Explainer ── */
+.crp-explainer {
+  padding: 12px 20px;
+  background: #fff7ed;
+  border-bottom: 1px solid #fed7aa;
+  flex-shrink: 0;
+}
+
+.crp-explainer-title {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #c2410c;
+  margin-bottom: 8px;
+}
+
+.crp-explainer-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.crp-pill {
+  font-size: 10px;
+  font-weight: 600;
+  background: #ffedd5;
+  border: 1px solid #fdba74;
+  color: #9a3412;
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+
+/* ── Agent list ── */
+.crp-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.crp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.crp-row:hover {
+  background: #fff5f5;
+}
+
+.crp-row:last-child { border-bottom: none; }
+
+.crp-row-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.crp-row-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.crp-agent-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.crp-agent-domain {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.crp-domain-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #dc2626;
+  flex-shrink: 0;
+}
+
+.crp-agent-desc {
+  font-size: 11px;
+  color: #475569;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.crp-row-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.crp-row-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  min-width: 120px;
+}
+
+.crp-meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0;
+}
+
+.crp-meta-label {
+  font-size: 8.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.crp-meta-val {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #374151;
+  text-align: right;
+}
+
+.crp-autonomy {
+  color: #dc2626;
+  font-weight: 800;
+}
+
+.crp-chevron {
+  font-size: 18px;
+  color: #cbd5e1;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.crp-row:hover .crp-chevron { color: #dc2626; }

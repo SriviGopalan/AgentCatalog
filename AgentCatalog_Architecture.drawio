@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ==================== TITLE ==================== -->
+    <mxCell id="title" value="AgentCatalog — Aria Conversational Banking Assistant — Architecture &amp; Data Flow"
+            style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;"
+            vertex="1" parent="1">
+      <mxGeometry x="60" y="18" width="1520" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== FRONTEND GROUP ==================== -->
+    <mxCell id="fe-bg" value="Browser / React Frontend  (Vite — Port 5173)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;verticalAlign=top;arcSize=3;opacity=40;"
+            vertex="1" parent="1">
+      <mxGeometry x="20" y="70" width="210" height="430" as="geometry" />
+    </mxCell>
+
+    <mxCell id="user" value="👤  User"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#036897;strokeColor=#006EAF;fontColor=#ffffff;fontSize=13;fontStyle=1;"
+            vertex="1" parent="1">
+      <mxGeometry x="75" y="120" width="100" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="chat-widget" value="ChatWidget.jsx&#xa;💬 Floating Chat Panel&#xa;(React Component)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="35" y="230" width="170" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="react-app" value="App.jsx + AgentGrid&#xa;Agent Catalog UI"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="35" y="370" width="170" height="55" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== BACKEND GROUP ==================== -->
+    <mxCell id="be-bg" value="Spring Boot Backend  (Port 8080)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;fontStyle=1;verticalAlign=top;arcSize=3;opacity=40;"
+            vertex="1" parent="1">
+      <mxGeometry x="270" y="70" width="650" height="580" as="geometry" />
+    </mxCell>
+
+    <!-- ChatController -->
+    <mxCell id="chat-ctrl" value="&lt;b&gt;ChatController&lt;/b&gt;&#xa;@RestController&#xa;POST /api/chat&#xa;← {sessionId, message}  →  {response, sessionId}"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="290" y="130" width="250" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- BankingAssistantConfig -->
+    <mxCell id="ba-config" value="&lt;b&gt;BankingAssistantConfig&lt;/b&gt;&#xa;@Configuration&#xa;Wires: system prompt + memory advisor + tools"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;dashed=1;"
+            vertex="1" parent="1">
+      <mxGeometry x="565" y="130" width="220" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- Spring AI ChatClient -->
+    <mxCell id="chat-client" value="&lt;b&gt;ChatClient&lt;/b&gt;  (Spring AI 1.0.3)&#xa;Orchestrates: prompt + advisors + tools"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffff88;strokeColor=#d6b656;fontSize=12;fontStyle=1;"
+            vertex="1" parent="1">
+      <mxGeometry x="290" y="280" width="250" height="65" as="geometry" />
+    </mxCell>
+
+    <!-- MessageChatMemoryAdvisor -->
+    <mxCell id="mem-advisor" value="&lt;b&gt;MessageChatMemoryAdvisor&lt;/b&gt;&#xa;Prepends last 20 messages&#xa;keyed by sessionId (conversation_id)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="290" y="420" width="250" height="65" as="geometry" />
+    </mxCell>
+
+    <!-- InMemoryChatMemoryRepository -->
+    <mxCell id="mem-repo" value="InMemoryChatMemoryRepository&#xa;MessageWindowChatMemory&#xa;(maxMessages = 20)"
+            style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="290" y="545" width="250" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- ====== BankingTools Group ====== -->
+    <mxCell id="tools-bg" value="&lt;b&gt;BankingTools&lt;/b&gt;  @Component — 7 × @Tool methods"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;verticalAlign=top;arcSize=4;opacity=60;"
+            vertex="1" parent="1">
+      <mxGeometry x="575" y="260" width="320" height="380" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tool1" value="getAccountBalance(accountId)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="308" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool2" value="getRecentTransactions(accountId, count)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="347" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool3" value="transferFunds(fromAccount, toAccount, amount)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="386" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool4" value="getProductInfo(productType)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="425" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool5" value="fileComplaint(description)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="464" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool6" value="escalateToLiveAgent(reason)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="503" width="292" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="tool7" value="reportLostCard(cardType)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;"
+            vertex="1" parent="1">
+      <mxGeometry x="588" y="542" width="292" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== ANTHROPIC GROUP ==================== -->
+    <mxCell id="api-bg" value="Anthropic Claude API  (External — api.anthropic.com/v1/messages)"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;verticalAlign=top;arcSize=3;opacity=50;"
+            vertex="1" parent="1">
+      <mxGeometry x="970" y="70" width="310" height="330" as="geometry" />
+    </mxCell>
+
+    <mxCell id="claude-model" value="claude-sonnet-4-6&#xa;Large Language Model"
+            style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;"
+            vertex="1" parent="1">
+      <mxGeometry x="988" y="130" width="272" height="90" as="geometry" />
+    </mxCell>
+
+    <mxCell id="tool-decision" value="Tool Use Decision&#xa;Does this need a function call?"
+            style="rhombus;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="1020" y="265" width="210" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== CATALOG API GROUP ==================== -->
+    <mxCell id="catalog-bg" value="Agent Catalog REST API"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;verticalAlign=top;arcSize=3;opacity=40;"
+            vertex="1" parent="1">
+      <mxGeometry x="270" y="720" width="420" height="120" as="geometry" />
+    </mxCell>
+
+    <mxCell id="agent-ctrl" value="AgentController&#xa;GET /api/agents&#xa;GET /api/domains  |  GET /api/stats"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="285" y="760" width="185" height="65" as="geometry" />
+    </mxCell>
+
+    <mxCell id="agent-service" value="AgentService&#xa;77 Mock Agents&#xa;15 Banking Domains"
+            style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;"
+            vertex="1" parent="1">
+      <mxGeometry x="490" y="755" width="185" height="70" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== LEGEND ==================== -->
+    <mxCell id="legend-bg" value="Legend"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=12;fontStyle=1;verticalAlign=top;"
+            vertex="1" parent="1">
+      <mxGeometry x="970" y="450" width="310" height="230" as="geometry" />
+    </mxCell>
+
+    <mxCell id="leg-l1" value="――  User / HTTP request/response"
+            style="text;html=1;fontSize=11;fillColor=none;strokeColor=none;fontColor=#6c8ebf;align=left;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="480" width="290" height="24" as="geometry" />
+    </mxCell>
+    <mxCell id="leg-l2" value="――  Anthropic API call (HTTPS, encrypted)"
+            style="text;html=1;fontSize=11;fillColor=none;strokeColor=none;fontColor=#b85450;align=left;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="508" width="290" height="24" as="geometry" />
+    </mxCell>
+    <mxCell id="leg-l3" value="- - -  Tool function call / result"
+            style="text;html=1;fontSize=11;fillColor=none;strokeColor=none;fontColor=#82b366;align=left;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="536" width="290" height="24" as="geometry" />
+    </mxCell>
+    <mxCell id="leg-l4" value="――  Memory advisor flow"
+            style="text;html=1;fontSize=11;fillColor=none;strokeColor=none;fontColor=#9673a6;align=left;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="564" width="290" height="24" as="geometry" />
+    </mxCell>
+    <mxCell id="leg-l5" value="- - -  @Bean configuration (app startup)"
+            style="text;html=1;fontSize=11;fillColor=none;strokeColor=none;fontColor=#d79b00;align=left;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="592" width="290" height="24" as="geometry" />
+    </mxCell>
+    <mxCell id="leg-key" value="⚠️  Requires: ANTHROPIC_API_KEY env var"
+            style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=2;"
+            vertex="1" parent="1">
+      <mxGeometry x="980" y="628" width="290" height="34" as="geometry" />
+    </mxCell>
+
+    <!-- ==================== EDGES ==================== -->
+
+    <!-- 1. User → ChatWidget (types message) -->
+    <mxCell id="e-user-widget" value="types message"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;fontSize=10;fontStyle=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="user" target="chat-widget" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 2. ChatWidget → ChatController: POST /api/chat -->
+    <mxCell id="e-widget-ctrl" value="POST /api/chat&#xa;{sessionId, message}"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;fontStyle=1;fontSize=10;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="chat-widget" target="chat-ctrl" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 3. ChatController → ChatClient: invoke -->
+    <mxCell id="e-ctrl-client" value="invoke"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="chat-ctrl" target="chat-client" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 4. BankingAssistantConfig → ChatClient: @Bean wires (startup) -->
+    <mxCell id="e-config-client" value="@Bean wires&#xa;(startup)"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d79b00;fontSize=10;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="ba-config" target="chat-client" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 5. ChatClient → MessageChatMemoryAdvisor: pre-call (inject history) -->
+    <mxCell id="e-client-advisor" value="pre-call: inject history"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#9673a6;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="chat-client" target="mem-advisor" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 6. MessageChatMemoryAdvisor → InMemoryChatMemoryRepository -->
+    <mxCell id="e-advisor-repo" value="read + write&#xa;by sessionId"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#9673a6;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="mem-advisor" target="mem-repo" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 7. ChatClient → Claude model: HTTPS call (routed above tools group) -->
+    <mxCell id="e-client-claude" value="HTTPS POST&#xa;system prompt + history + tool schemas + user message"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#b85450;fontStyle=1;fontSize=10;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="chat-client" target="claude-model" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="415" y="240" />
+          <mxPoint x="1124" y="240" />
+          <mxPoint x="1124" y="130" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 8. Claude model → tool-decision -->
+    <mxCell id="e-claude-decision" value=""
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#b85450;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+            edge="1" source="claude-model" target="tool-decision" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- 9. tool-decision → BankingTools: YES path (tool_use) -->
+    <mxCell id="e-decision-tools" value="YES — tool_use&#xa;(function call)"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#82b366;fontStyle=1;fontSize=10;strokeWidth=2;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="tool-decision" target="tools-bg" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="960" y="315" />
+          <mxPoint x="960" y="450" />
+          <mxPoint x="895" y="450" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 10. BankingTools → Claude model: tool_result -->
+    <mxCell id="e-tools-claude" value="tool_result"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#82b366;fontStyle=1;fontSize=10;strokeWidth=2;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="tools-bg" target="claude-model" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="940" y="450" />
+          <mxPoint x="940" y="175" />
+          <mxPoint x="988" y="175" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 11. Claude model → ChatClient: final text response (return path) -->
+    <mxCell id="e-claude-client" value="text response"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#b85450;fontStyle=2;fontSize=10;strokeWidth=2;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="claude-model" target="chat-client" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1124" y="100" />
+          <mxPoint x="550" y="100" />
+          <mxPoint x="550" y="312" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 12. ChatController → ChatWidget: JSON response (return) -->
+    <mxCell id="e-ctrl-widget-return" value="JSON {response, sessionId}"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#6c8ebf;fontStyle=2;fontSize=10;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="chat-ctrl" target="chat-widget" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="250" y="165" />
+          <mxPoint x="250" y="262" />
+          <mxPoint x="35" y="262" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 13. React App → AgentController: catalog API calls -->
+    <mxCell id="e-reactapp-agentctrl" value="GET /api/agents&#xa;GET /api/domains&#xa;GET /api/stats"
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#82b366;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="react-app" target="agent-ctrl" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="120" y="500" />
+          <mxPoint x="120" y="792" />
+          <mxPoint x="285" y="792" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 14. AgentController → AgentService -->
+    <mxCell id="e-ctrl-service" value=""
+            style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d6b656;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;"
+            edge="1" source="agent-ctrl" target="agent-service" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- NO label on tool-decision for NO path -->
+    <mxCell id="e-decision-no-label" value="NO — direct response"
+            style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;fontColor=#b85450;fontStyle=2;"
+            vertex="1" parent="1">
+      <mxGeometry x="1210" y="295" width="130" height="30" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

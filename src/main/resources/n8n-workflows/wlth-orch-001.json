@@ -1,0 +1,55 @@
+{
+  "name": "Wealth Advisory Orchestrator",
+  "nodes": [
+    {
+      "parameters": { "path": "wlth-orch-001", "responseMode": "lastNode", "options": {} },
+      "id": "webhook-wlth-orch-001", "name": "Webhook",
+      "type": "n8n-nodes-base.webhook", "typeVersion": 2,
+      "position": [240, 300], "webhookId": "wlth-orch-001"
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/portfolio-analyzer",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "portfolio-analyzer-agent", "name": "Portfolio Analyzer Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [580, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/market-data-feed",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "market-data-feed-agent", "name": "Market Data Feed Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [920, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/risk-profiling",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "risk-profiling-agent", "name": "Risk Profiling Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1260, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/rebalancing-execution",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "rebalancing-execution-agent", "name": "Rebalancing Execution Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1600, 300]
+    },
+    {
+      "parameters": { "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'complete', orchestrator: 'Wealth Advisory Orchestrator', domain: 'Wealth Management' }) }}", "options": {} },
+      "id": "respond-wlth-orch-001", "name": "Aggregate & Respond",
+      "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1, "position": [1940, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Portfolio Analyzer Agent", "type": "main", "index": 0 }]] },
+    "Portfolio Analyzer Agent": { "main": [[{ "node": "Market Data Feed Agent", "type": "main", "index": 0 }]] },
+    "Market Data Feed Agent": { "main": [[{ "node": "Risk Profiling Agent", "type": "main", "index": 0 }]] },
+    "Risk Profiling Agent": { "main": [[{ "node": "Rebalancing Execution Agent", "type": "main", "index": 0 }]] },
+    "Rebalancing Execution Agent": { "main": [[{ "node": "Aggregate & Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": ["agent-catalog", "wealth-management"]
+}

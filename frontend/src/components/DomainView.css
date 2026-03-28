@@ -1,0 +1,312 @@
+.domain-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Domain Header ── */
+.domain-view-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 28px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-muted);
+  flex-shrink: 0;
+}
+
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: #f8fafc;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-back:hover {
+  background: var(--accent-blue-50);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.domain-view-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.domain-view-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.domain-view-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 3px;
+  line-height: 1.2;
+}
+
+.domain-view-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.domain-view-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.domain-view-count {
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--accent-blue);
+  line-height: 1;
+}
+
+.domain-view-count-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ── MFE Tab Bar ── */
+.domain-tab-bar {
+  display: flex;
+  align-items: stretch;
+
+  background: #0d1b4b;
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+  padding: 10px 20px 0;
+  gap: 6px;
+}
+
+.domain-tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 12px;
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.55);
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  position: relative;
+  bottom: -2px;
+}
+
+.domain-tab:hover {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.85);
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Active state — each tab has its own color */
+.domain-tab.active {
+  color: #ffffff;
+  border-color: transparent;
+  background: #f0f4f9;
+}
+
+/* Blue — Catalog */
+.domain-tab-blue.active           { border-top: 3px solid #3b82f6; color: #1d4ed8; background: #eff6ff; }
+.domain-tab-blue.active .tab-icon-wrap { background: #2563eb; }
+.domain-tab-blue.active .tab-label    { color: #1d4ed8; }
+.domain-tab-blue.active .tab-desc     { color: #3b82f6; }
+.domain-tab-blue.active .tab-mfe-chip { background: #dbeafe; color: #2563eb; }
+
+/* Purple — Registry */
+.domain-tab-purple.active           { border-top: 3px solid #8b5cf6; color: #6d28d9; background: #faf5ff; }
+.domain-tab-purple.active .tab-icon-wrap { background: #7c3aed; }
+.domain-tab-purple.active .tab-label    { color: #6d28d9; }
+.domain-tab-purple.active .tab-desc     { color: #8b5cf6; }
+.domain-tab-purple.active .tab-mfe-chip { background: #f3e8ff; color: #7c3aed; }
+
+/* Orange — Orchestration */
+.domain-tab-orange.active           { border-top: 3px solid #f97316; color: #c2410c; background: #fff7ed; }
+.domain-tab-orange.active .tab-icon-wrap { background: #ea580c; }
+.domain-tab-orange.active .tab-label    { color: #c2410c; }
+.domain-tab-orange.active .tab-desc     { color: #f97316; }
+.domain-tab-orange.active .tab-mfe-chip { background: #ffedd5; color: #c2410c; }
+
+/* Icon wrapper */
+.tab-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.18s;
+}
+
+.tab-icon { font-size: 16px; }
+
+.tab-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.tab-label-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tab-label {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.01em;
+}
+
+.tab-desc {
+  font-size: 9.5px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+}
+
+.tab-mfe-chip {
+  font-size: 8px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.35);
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.tab-active-badge {
+  font-size: 8.5px;
+  font-weight: 800;
+  background: #16a34a;
+  color: #ffffff;
+  padding: 1px 7px;
+  border-radius: 10px;
+  animation: pulse-badge 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.tab-bar-mfe-label {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.mfe-shell-indicator {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ── MFE Content ── */
+.domain-mfe-content {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #f0f4f9;
+}
+
+/* ── Workflow Active Ribbon ── */
+.workflow-ribbon {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: #0d1b4b;
+  color: #d1fae5;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+  white-space: nowrap;
+  z-index: 10;
+  animation: slide-up 0.3s ease;
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.ribbon-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: blink-dot 0.8s step-end infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.ribbon-tab-link {
+  background: none;
+  border: none;
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.ribbon-dismiss {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 0 0 6px;
+  line-height: 1;
+}
+
+.ribbon-dismiss:hover {
+  color: rgba(255,255,255,0.9);
+}

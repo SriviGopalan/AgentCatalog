@@ -1,0 +1,214 @@
+.registry-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+}
+
+.registry-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-muted);
+  background: #f8fafc;
+}
+
+.registry-search {
+  width: 280px;
+  padding: 8px 14px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.registry-search:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.registry-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.registry-table-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.registry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.registry-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-navy);
+  color: var(--text-on-navy);
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  user-select: none;
+}
+
+.registry-table thead th:hover {
+  background: #1e40af;
+}
+
+.sort-icon {
+  opacity: 0.6;
+  font-size: 10px;
+  margin-left: 4px;
+}
+
+.registry-row {
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-muted);
+  transition: background 0.1s;
+}
+
+.registry-row:hover {
+  background: var(--accent-blue-50);
+}
+
+.registry-row td {
+  padding: 10px 14px;
+  vertical-align: middle;
+  color: var(--text-secondary);
+}
+
+.registry-id {
+  font-size: 10px;
+  font-family: monospace;
+  background: var(--accent-blue-50);
+  color: #1d4ed8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--border-muted);
+}
+
+.registry-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+
+.registry-orchestrates {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+.registry-model {
+  font-size: 11px;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.registry-product-api {
+  font-size: 11px;
+  color: var(--agent-product-text);
+  background: var(--agent-product-bg);
+  border: 1px solid var(--agent-product-border);
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: block;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.registry-na {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.registry-owner {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Toolbar right side ── */
+.registry-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.registry-active-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #166534;
+  background: #dcfce7;
+  border: 1px solid #86efac;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.registry-active-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #16a34a;
+  animation: blink-reg 0.8s step-end infinite;
+}
+
+@keyframes blink-reg {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* ── Active row highlighting ── */
+.registry-row-active {
+  background: #f0fdf4 !important;
+  border-left: 3px solid #16a34a;
+  animation: row-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes row-pulse {
+  0%, 100% { background: #f0fdf4; }
+  50% { background: #dcfce7; }
+}
+
+.registry-row-active td {
+  color: var(--text-primary);
+}
+
+.registry-active-indicator {
+  color: #16a34a;
+  font-size: 10px;
+  margin-left: 5px;
+  animation: blink-reg 0.8s step-end infinite;
+}

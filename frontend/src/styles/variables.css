@@ -1,0 +1,94 @@
+:root {
+  /* === BLUE & WHITE THEME === */
+
+  /* Backgrounds */
+  --bg-primary: #f0f4f8;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #e8f0fe;
+  --bg-card: #ffffff;
+  --bg-hover: #eff6ff;
+  --bg-navy: #1e3a5f;
+  --bg-navy-dark: #0d1b4b;
+
+  /* Borders */
+  --border-default: #bfdbfe;
+  --border-muted: #dbeafe;
+  --border-emphasis: #2563eb;
+
+  /* Text */
+  --text-primary: #0d1b4b;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --text-link: #2563eb;
+  --text-on-navy: #e0eaff;
+  --text-on-navy-muted: #93b4d8;
+
+  /* Risk Tier Colors (keep functional but update tones) */
+  --risk-low-bg: #dcfce7;
+  --risk-low-text: #166534;
+  --risk-low-border: #86efac;
+
+  --risk-medium-bg: #fef9c3;
+  --risk-medium-text: #854d0e;
+  --risk-medium-border: #fde047;
+
+  --risk-high-bg: #ffedd5;
+  --risk-high-text: #9a3412;
+  --risk-high-border: #fdba74;
+
+  --risk-critical-bg: #fee2e2;
+  --risk-critical-text: #991b1b;
+  --risk-critical-border: #fca5a5;
+
+  /* Status */
+  --status-active-bg: #dcfce7;
+  --status-active-text: #166534;
+  --status-experimental-bg: #dbeafe;
+  --status-experimental-text: #1d4ed8;
+  --status-retired-bg: #f3f4f6;
+  --status-retired-text: #6b7280;
+
+  /* Compliance */
+  --compliance-approved-text: #166534;
+  --compliance-pending-text: #854d0e;
+  --compliance-under-review-text: #1d4ed8;
+
+  /* Accent Blues */
+  --accent-blue: #2563eb;
+  --accent-blue-light: #3b82f6;
+  --accent-blue-emphasis: #1d4ed8;
+  --accent-blue-100: #dbeafe;
+  --accent-blue-50: #eff6ff;
+  --accent-green: #059669;
+
+  /* Agent Type Colors */
+  --agent-ai-bg: #f3e8ff;
+  --agent-ai-text: #6b21a8;
+  --agent-ai-border: #c084fc;
+
+  --agent-api-bg: #ecfdf5;
+  --agent-api-text: #065f46;
+  --agent-api-border: #6ee7b7;
+
+  --agent-product-bg: #dbeafe;
+  --agent-product-text: #1e40af;
+  --agent-product-border: #93c5fd;
+
+  --agent-orch-bg: #fff7ed;
+  --agent-orch-text: #9a3412;
+  --agent-orch-border: #fdba74;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(30, 58, 95, 0.08), 0 1px 2px rgba(30, 58, 95, 0.06);
+  --shadow-card-hover: 0 10px 25px rgba(37, 99, 235, 0.15), 0 4px 10px rgba(37, 99, 235, 0.1);
+  --shadow-panel: 0 20px 60px rgba(30, 58, 95, 0.2);
+
+  /* Spacing */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Sidebar */
+  --sidebar-width: 260px;
+}

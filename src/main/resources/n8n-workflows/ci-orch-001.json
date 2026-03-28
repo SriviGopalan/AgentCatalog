@@ -1,0 +1,55 @@
+{
+  "name": "Corporate Credit Orchestrator",
+  "nodes": [
+    {
+      "parameters": { "path": "ci-orch-001", "responseMode": "lastNode", "options": {} },
+      "id": "webhook-ci-orch-001", "name": "Webhook",
+      "type": "n8n-nodes-base.webhook", "typeVersion": 2,
+      "position": [240, 300], "webhookId": "ci-orch-001"
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/trade-finance",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "trade-finance-agent", "name": "Trade Finance Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [580, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/corporate-banking-api",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "corporate-banking-api-agent", "name": "Corporate Banking API Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [920, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/syndication-market",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "syndication-market-agent", "name": "Syndication Market Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1260, 300]
+    },
+    {
+      "parameters": { "method": "POST", "url": "http://localhost:8080/api/simulate/treasury-management",
+        "sendHeaders": true, "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] }, "options": {} },
+      "id": "treasury-management-agent", "name": "Treasury Management Agent",
+      "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [1600, 300]
+    },
+    {
+      "parameters": { "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'complete', orchestrator: 'Corporate Credit Orchestrator', domain: 'Commercial & Industrial' }) }}", "options": {} },
+      "id": "respond-ci-orch-001", "name": "Aggregate & Respond",
+      "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1, "position": [1940, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "Trade Finance Agent", "type": "main", "index": 0 }]] },
+    "Trade Finance Agent": { "main": [[{ "node": "Corporate Banking API Agent", "type": "main", "index": 0 }]] },
+    "Corporate Banking API Agent": { "main": [[{ "node": "Syndication Market Agent", "type": "main", "index": 0 }]] },
+    "Syndication Market Agent": { "main": [[{ "node": "Treasury Management Agent", "type": "main", "index": 0 }]] },
+    "Treasury Management Agent": { "main": [[{ "node": "Aggregate & Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": ["agent-catalog", "commercial-industrial"]
+}

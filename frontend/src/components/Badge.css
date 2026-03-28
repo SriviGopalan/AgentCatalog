@@ -1,0 +1,45 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+/* Risk tiers */
+.badge-risk-LOW { background: var(--risk-low-bg); color: var(--risk-low-text); border-color: var(--risk-low-border); }
+.badge-risk-MEDIUM { background: var(--risk-medium-bg); color: var(--risk-medium-text); border-color: var(--risk-medium-border); }
+.badge-risk-HIGH { background: var(--risk-high-bg); color: var(--risk-high-text); border-color: var(--risk-high-border); }
+.badge-risk-CRITICAL { background: var(--risk-critical-bg); color: var(--risk-critical-text); border-color: var(--risk-critical-border); }
+
+/* Status */
+.badge-status-ACTIVE { background: var(--status-active-bg); color: var(--status-active-text); }
+.badge-status-EXPERIMENTAL { background: var(--status-experimental-bg); color: var(--status-experimental-text); border: 1px solid var(--border-emphasis); }
+.badge-status-RETIRED { background: var(--status-retired-bg); color: var(--status-retired-text); }
+
+/* Compliance */
+.badge-compliance-APPROVED { color: var(--compliance-approved-text); background: var(--risk-low-bg); }
+.badge-compliance-PENDING { color: var(--compliance-pending-text); background: var(--risk-medium-bg); }
+.badge-compliance-UNDER_REVIEW { color: var(--compliance-under-review-text); background: var(--status-experimental-bg); border-color: var(--border-emphasis); }
+
+/* Data classification */
+.badge-data-PUBLIC { background: #f9fafb; color: var(--text-muted); border-color: #e5e7eb; }
+.badge-data-INTERNAL { background: var(--accent-blue-50); color: #1e40af; border-color: var(--border-muted); }
+.badge-data-CONFIDENTIAL { background: var(--risk-medium-bg); color: var(--risk-medium-text); }
+.badge-data-RESTRICTED { background: var(--risk-critical-bg); color: var(--risk-critical-text); }
+
+/* Model */
+.badge-model { background: #f8fafc; color: var(--text-secondary); border: 1px solid #e2e8f0; }
+
+/* Agent Type */
+.badge-agent-AI_AGENT { background: var(--agent-ai-bg); color: var(--agent-ai-text); border-color: var(--agent-ai-border); }
+.badge-agent-API_WRAPPER { background: var(--agent-api-bg); color: var(--agent-api-text); border-color: var(--agent-api-border); }
+.badge-agent-PRODUCT_API_AGENT { background: var(--agent-product-bg); color: var(--agent-product-text); border-color: var(--agent-product-border); }
+.badge-agent-ORCHESTRATOR { background: var(--agent-orch-bg); color: var(--agent-orch-text); border-color: var(--agent-orch-border); font-weight: 700; }
+
+/* Generic */
+.badge-default { background: #f1f5f9; color: var(--text-muted); border-color: #e2e8f0; }

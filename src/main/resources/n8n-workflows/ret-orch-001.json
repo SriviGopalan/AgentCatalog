@@ -1,0 +1,104 @@
+{
+  "name": "Retail Onboarding Orchestrator",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "ret-orch-001",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-ret-orch-001",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "ret-orch-001"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/simulate/kyc-verification",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] },
+        "options": {}
+      },
+      "id": "kyc-verification-agent",
+      "name": "KYC Verification Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [580, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/simulate/core-banking-api",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] },
+        "options": {}
+      },
+      "id": "core-banking-api-agent",
+      "name": "Core Banking API Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/simulate/loan-origination",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] },
+        "options": {}
+      },
+      "id": "loan-origination-agent",
+      "name": "Loan Origination Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1260, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8080/api/simulate/branch-locator",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true,
+        "bodyParameters": { "parameters": [{ "name": "question", "value": "={{ $json.question }}" }] },
+        "options": {}
+      },
+      "id": "branch-locator-agent",
+      "name": "Branch Locator Agent",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1600, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'complete', orchestrator: 'Retail Onboarding Orchestrator', domain: 'Retail Banking', steps: ['KYC Verification Agent', 'Core Banking API Agent', 'Loan Origination Agent', 'Branch Locator Agent'] }) }}",
+        "options": {}
+      },
+      "id": "respond-ret-orch-001",
+      "name": "Aggregate & Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1940, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": { "main": [[{ "node": "KYC Verification Agent", "type": "main", "index": 0 }]] },
+    "KYC Verification Agent": { "main": [[{ "node": "Core Banking API Agent", "type": "main", "index": 0 }]] },
+    "Core Banking API Agent": { "main": [[{ "node": "Loan Origination Agent", "type": "main", "index": 0 }]] },
+    "Loan Origination Agent": { "main": [[{ "node": "Branch Locator Agent", "type": "main", "index": 0 }]] },
+    "Branch Locator Agent": { "main": [[{ "node": "Aggregate & Respond", "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "tags": ["agent-catalog", "retail-banking"]
+}
