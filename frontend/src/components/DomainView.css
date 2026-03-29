@@ -89,61 +89,180 @@
 /* ── MFE Tab Bar ── */
 .domain-tab-bar {
   display: flex;
-  align-items: stretch;
-
-  background: #0d1b4b;
-  border-bottom: 2px solid rgba(255,255,255,0.06);
+  align-items: flex-end;
+  background: #0a1640;
+  border-bottom: 3px solid rgba(255,255,255,0.06);
   flex-shrink: 0;
-  padding: 10px 20px 0;
-  gap: 6px;
+  padding: 14px 20px 0;
+  gap: 8px;
 }
 
 .domain-tab {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 16px 12px;
-  border: 1.5px solid rgba(255,255,255,0.1);
+  padding: 12px 18px 14px;
+  border: 1.5px solid rgba(255,255,255,0.15);
   border-bottom: none;
-  border-radius: 10px 10px 0 0;
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.55);
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%);
+  color: rgba(255,255,255,0.6);
   cursor: pointer;
-  transition: all 0.18s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
   white-space: nowrap;
   position: relative;
-  bottom: -2px;
+  bottom: -3px;
+  user-select: none;
+  /* 3D raised effect */
+  box-shadow:
+    0 6px 0 rgba(0,0,0,0.5),
+    0 8px 18px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.2);
+}
+
+/* Blue — Catalog (fluorescent) */
+.domain-tab-blue {
+  background: linear-gradient(160deg, #1a6fff 0%, #0d4fd4 100%);
+  border-color: #5aabff;
+  color: #ffffff;
+  box-shadow:
+    0 6px 0 #0a2a80,
+    0 8px 24px rgba(26,111,255,0.55),
+    0 0 18px rgba(90,171,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    inset 0 -1px 0 rgba(0,0,50,0.3);
+}
+
+/* Purple — Registry (fluorescent) */
+.domain-tab-purple {
+  background: linear-gradient(160deg, #9b30ff 0%, #6d10d4 100%);
+  border-color: #c97dff;
+  color: #ffffff;
+  box-shadow:
+    0 6px 0 #3a0880,
+    0 8px 24px rgba(155,48,255,0.55),
+    0 0 18px rgba(201,125,255,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    inset 0 -1px 0 rgba(30,0,60,0.3);
+}
+
+/* Orange — Orchestration (fluorescent) */
+.domain-tab-orange {
+  background: linear-gradient(160deg, #ff6b00 0%, #d44200 100%);
+  border-color: #ffaa44;
+  color: #ffffff;
+  box-shadow:
+    0 6px 0 #802000,
+    0 8px 24px rgba(255,107,0,0.55),
+    0 0 18px rgba(255,170,68,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    inset 0 -1px 0 rgba(60,10,0,0.3);
 }
 
 .domain-tab:hover {
-  background: rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.85);
-  border-color: rgba(255,255,255,0.18);
+  color: #ffffff;
+  transform: translateY(-4px);
 }
 
-/* Active state — each tab has its own color */
+.domain-tab-blue:hover {
+  background: linear-gradient(160deg, #3d8cff 0%, #1a6fff 100%);
+  border-color: #7dc4ff;
+  box-shadow:
+    0 10px 0 #0a2a80,
+    0 14px 32px rgba(26,111,255,0.7),
+    0 0 32px rgba(90,171,255,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+.domain-tab-purple:hover {
+  background: linear-gradient(160deg, #b84dff 0%, #9b30ff 100%);
+  border-color: #d9a0ff;
+  box-shadow:
+    0 10px 0 #3a0880,
+    0 14px 32px rgba(155,48,255,0.7),
+    0 0 32px rgba(201,125,255,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+.domain-tab-orange:hover {
+  background: linear-gradient(160deg, #ff8c2a 0%, #ff6b00 100%);
+  border-color: #ffcc77;
+  box-shadow:
+    0 10px 0 #802000,
+    0 14px 32px rgba(255,107,0,0.7),
+    0 0 32px rgba(255,170,68,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+/* Press-down animation on click */
+.domain-tab:active:not(.active) {
+  transform: translateY(2px) !important;
+  transition: transform 0.07s ease, box-shadow 0.07s ease;
+}
+
+.domain-tab-blue:active:not(.active) {
+  box-shadow: 0 2px 0 #0a2a80, 0 4px 10px rgba(26,111,255,0.4), inset 0 2px 5px rgba(0,0,60,0.35) !important;
+}
+
+.domain-tab-purple:active:not(.active) {
+  box-shadow: 0 2px 0 #3a0880, 0 4px 10px rgba(155,48,255,0.4), inset 0 2px 5px rgba(30,0,60,0.35) !important;
+}
+
+.domain-tab-orange:active:not(.active) {
+  box-shadow: 0 2px 0 #802000, 0 4px 10px rgba(255,107,0,0.4), inset 0 2px 5px rgba(60,10,0,0.35) !important;
+}
+
+/* Active state — selected tab (no 3D depth, connected to content) */
 .domain-tab.active {
   color: #ffffff;
   border-color: transparent;
   background: #f0f4f9;
+  transform: translateY(0);
+  bottom: -3px;
+  z-index: 2;
 }
 
-/* Blue — Catalog */
-.domain-tab-blue.active           { border-top: 3px solid #3b82f6; color: #1d4ed8; background: #eff6ff; }
+/* Blue — Catalog active */
+.domain-tab-blue.active {
+  border-top: 4px solid #3b82f6;
+  color: #1d4ed8;
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+  box-shadow:
+    0 0 0 1px rgba(59,130,246,0.15),
+    0 -4px 24px rgba(59,130,246,0.25),
+    inset 0 -2px 0 rgba(59,130,246,0.1);
+}
 .domain-tab-blue.active .tab-icon-wrap { background: #2563eb; }
 .domain-tab-blue.active .tab-label    { color: #1d4ed8; }
 .domain-tab-blue.active .tab-desc     { color: #3b82f6; }
 .domain-tab-blue.active .tab-mfe-chip { background: #dbeafe; color: #2563eb; }
 
-/* Purple — Registry */
-.domain-tab-purple.active           { border-top: 3px solid #8b5cf6; color: #6d28d9; background: #faf5ff; }
+/* Purple — Registry active */
+.domain-tab-purple.active {
+  border-top: 4px solid #8b5cf6;
+  color: #6d28d9;
+  background: linear-gradient(180deg, #faf5ff 0%, #f3e8ff 100%);
+  box-shadow:
+    0 0 0 1px rgba(139,92,246,0.15),
+    0 -4px 24px rgba(139,92,246,0.25),
+    inset 0 -2px 0 rgba(139,92,246,0.1);
+}
 .domain-tab-purple.active .tab-icon-wrap { background: #7c3aed; }
 .domain-tab-purple.active .tab-label    { color: #6d28d9; }
 .domain-tab-purple.active .tab-desc     { color: #8b5cf6; }
 .domain-tab-purple.active .tab-mfe-chip { background: #f3e8ff; color: #7c3aed; }
 
-/* Orange — Orchestration */
-.domain-tab-orange.active           { border-top: 3px solid #f97316; color: #c2410c; background: #fff7ed; }
+/* Orange — Orchestration active */
+.domain-tab-orange.active {
+  border-top: 4px solid #f97316;
+  color: #c2410c;
+  background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+  box-shadow:
+    0 0 0 1px rgba(249,115,22,0.15),
+    0 -4px 24px rgba(249,115,22,0.25),
+    inset 0 -2px 0 rgba(249,115,22,0.1);
+}
 .domain-tab-orange.active .tab-icon-wrap { background: #ea580c; }
 .domain-tab-orange.active .tab-label    { color: #c2410c; }
 .domain-tab-orange.active .tab-desc     { color: #f97316; }
@@ -178,16 +297,18 @@
 }
 
 .tab-label {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
-  color: rgba(255,255,255,0.75);
+  color: #ffffff;
   letter-spacing: 0.01em;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .tab-desc {
-  font-size: 9.5px;
-  color: rgba(255,255,255,0.4);
+  font-size: 10px;
+  color: rgba(255,255,255,0.7);
   font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .tab-mfe-chip {
