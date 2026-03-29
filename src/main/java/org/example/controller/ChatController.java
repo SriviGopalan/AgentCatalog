@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
+@CrossOrigin(origins = "*")
 public class ChatController {
 
     // Key used by Spring AI 1.0.3 MessageChatMemoryAdvisor to look up conversation ID

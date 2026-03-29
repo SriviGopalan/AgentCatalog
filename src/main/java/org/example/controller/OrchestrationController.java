@@ -5,6 +5,7 @@ import org.example.service.AgentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,18 +13,21 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
-public class
-OrchestrationController {
+@CrossOrigin(origins = "*")
+public class OrchestrationController {
 
     private final AgentService agentService;
-    private final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate;
 
     @Value("${n8n.base.url:http://localhost:5678}")
     private String n8nBaseUrl;
 
     public OrchestrationController(AgentService agentService) {
         this.agentService = agentService;
+        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
+        factory.setConnectTimeout(2000);
+        factory.setReadTimeout(5000);
+        this.restTemplate = new RestTemplate(factory);
     }
 
     /** Check if n8n is reachable */
